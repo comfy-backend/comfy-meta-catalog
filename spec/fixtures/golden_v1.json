@@ -1,0 +1,587 @@
+{
+ "fp_spec": 1,
+ "fixture_count": 27,
+ "fixtures": [
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/0136284ecc19.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:9f9eee3570595c42e5df3936eb42034a0b2f9e50cfdeb93ec8a0045bedeb4b5f",
+    "node_count": 7,
+    "node_types": [
+     "ByteDance2ReferenceNode",
+     "GeminiImage2Node",
+     "GeminiNode",
+     "LoadImage",
+     "PreviewAny",
+     "PreviewImage",
+     "SaveVideo"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/2e37304a2fbd.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:84ebb64240c1baf1abb46faf794662f33e00bf5d81f1ada5f367c1804c3a9311",
+    "node_count": 18,
+    "node_types": [
+     "ComfyMathExpression",
+     "EmptyImage",
+     "FluxResolutionNode",
+     "GeminiImage2Node",
+     "GetImageSize",
+     "ImageCompare",
+     "ImageCompositeMasked",
+     "ImagePadForOutpaint",
+     "ImageResize+",
+     "ImageResizeKJv2",
+     "LoadImage",
+     "PreviewImage",
+     "PrimitiveInt",
+     "SaveImage"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/558cc012978d.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:c2a0f310a3a67a378ea3d2a6e183529a2023ac7a7e1d9edda2f4d03ce1bee506",
+    "node_count": 48,
+    "node_types": [
+     "CFGGuider",
+     "CLIPTextEncode",
+     "CM_FloatToInt",
+     "CheckpointLoaderSimple",
+     "ComfyMathExpression",
+     "EmptyLTXVLatentVideo",
+     "Float32ColorCorrect",
+     "GetImageSize",
+     "ImageConcanate",
+     "ImagePadKJ",
+     "ImageResizeKJv2",
+     "KSamplerSelect",
+     "LTXAVTextEncoderLoader",
+     "LTXAddVideoICLoRAGuide",
+     "LTXICLoRALoaderModelOnly",
+     "LTXVAudioVAEDecode",
+     "LTXVAudioVAELoader",
+     "LTXVConcatAVLatent",
+     "LTXVConditioning",
+     "LTXVCropGuides",
+     "LTXVEmptyLatentAudio",
+     "LTXVImgToVideoConditionOnly",
+     "LTXVPreprocess",
+     "LTXVSeparateAVLatent",
+     "LoadImage",
+     "LoraLoaderModelOnly",
+     "ManualSigmas",
+     "PrimitiveBoolean",
+     "PrimitiveInt",
+     "RandomNoise",
+     "ResizeImageMaskNode",
+     "SamplerCustomAdvanced",
+     "VAEDecode",
+     "VAEDecodeTiled",
+     "VHS_LoadVideo",
+     "VHS_VideoCombine",
+     "VHS_VideoInfo"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/834ab8919949.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:f4a0d3554a89ac7f0c90f53440b27a4fac5bbe34a1d532aec22d17a81bdfb152",
+    "node_count": 3,
+    "node_types": [
+     "ByteDance2ReferenceNodeV2",
+     "LoadImage",
+     "SaveVideo"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/a262dd6de9ce.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:b33a4d5f0cfe64a8e3a1b7411726f1a5ffa6fa2d79506fc72873ac0b2b2a5e46",
+    "node_count": 2,
+    "node_types": [
+     "ByteDanceSeedreamNodeV2",
+     "SaveImageAdvanced"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/api_flux2.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:d978df4bf9fd15aed70c962c6776ada55b2aa5359dd227e6b11cf4ff213ad361",
+    "node_count": 7,
+    "node_types": [
+     "BatchImagesNode",
+     "Flux2ProImageNode",
+     "LoadImage",
+     "SaveImage"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/api_kling_o3_i2v.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:8281d04660f18f7d315065629fa38fd5580ed21acfdddb68c5f8cc0ae7dea7b6",
+    "node_count": 4,
+    "node_types": [
+     "BatchImagesNode",
+     "KlingOmniProImageToVideoNode",
+     "LoadImage",
+     "SaveVideo"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/api_openai_dall_e_2_inpaint.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:7a571d2f2cc541749015f31737a3ca93c1ebe38bc88b95f89c91c076cb4ea0d7",
+    "node_count": 3,
+    "node_types": [
+     "LoadImage",
+     "OpenAIDalle2",
+     "PreviewImage"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/api_seedance2_0_flf2v.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:7c8a2e36a51e9af99161143557735b20bd63ef2a782c11b330c382e23c724661",
+    "node_count": 4,
+    "node_types": [
+     "ByteDance2FirstLastFrameNode",
+     "LoadImage",
+     "SaveVideo"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/api_vidu_video_extension.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:8eadc150077c92706f936c27e9a52a53ec943be2357f391cc1ee83fca0888c9a",
+    "node_count": 6,
+    "node_types": [
+     "GetImageSize",
+     "GetVideoComponents",
+     "ImageFromBatch",
+     "LoadVideo",
+     "SaveVideo",
+     "ViduExtendVideoNode"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/b34841f6789c.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:66d28643e7a6c7e9857446f8606b2a7093d9e11e52acc261d0e37eb1276d891d",
+    "node_count": 2,
+    "node_types": [
+     "MinimaxHailuo03TextToVideoNode",
+     "SaveVideo"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/d78377cf53f4.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:490313f41bc0c707ff90129af9e10bdd06a17884253018234a9fefceb960ad4f",
+    "node_count": 42,
+    "node_types": [
+     "CLIPLoader",
+     "CLIPTextEncode",
+     "ComfyMathExpression",
+     "ComfySwitchNode",
+     "CreateVideo",
+     "EmptyLTXVLatentVideo",
+     "GetImageSize",
+     "LTXVAddGuide",
+     "LTXVAudioVAEDecode",
+     "LTXVConcatAVLatent",
+     "LTXVConditioning",
+     "LTXVCropGuides",
+     "LTXVDualCFGGuider",
+     "LTXVEmptyLatentAudio",
+     "LTXVPreprocess",
+     "LTXVSeparateAVLatent",
+     "LoadImage",
+     "ManualSigmas",
+     "PreviewAny",
+     "PrimitiveBoolean",
+     "PrimitiveInt",
+     "PrimitiveStringMultiline",
+     "RandomNoise",
+     "ResizeImageMaskNode",
+     "SamplerCustomAdvanced",
+     "SamplerEulerAncestral",
+     "SaveVideo",
+     "TextGenerateLTX2Prompt",
+     "UNETLoader",
+     "VAEDecodeTiled",
+     "VAELoader"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/ff88e6723334.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:a6e77774cc76cdc42dcd18ccd6bdeaca1b9b1d79dd855ee9331897728c2d2fc5",
+    "node_count": 12,
+    "node_types": [
+     "GeminiImage2Node",
+     "ImageBatchMulti",
+     "KlingOmniProImageToVideoNode",
+     "LoadImage",
+     "SaveImage",
+     "SaveVideo",
+     "StringConcatenate"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/image-qwen_image_edit_2511_lora_inflation.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:ca45c4fecb2a0584cef65ac37eaee88730b3350bb25df7e744596fda66e0c259",
+    "node_count": 16,
+    "node_types": [
+     "CFGNorm",
+     "CLIPLoader",
+     "FluxKontextImageScale",
+     "FluxKontextMultiReferenceLatentMethod",
+     "KSampler",
+     "LoadImage",
+     "LoraLoaderModelOnly",
+     "ModelSamplingAuraFlow",
+     "SaveImage",
+     "TextEncodeQwenImageEditPlus",
+     "UNETLoader",
+     "VAEDecode",
+     "VAEEncode",
+     "VAELoader"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/image_qwen_image__fb60d80de54b.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:5a2d23baa5b135272271940dbf5c08dbee7135f384613aebb049007e06457cfd",
+    "node_count": 11,
+    "node_types": [
+     "CLIPLoader",
+     "CLIPTextEncode",
+     "EmptySD3LatentImage",
+     "KSampler",
+     "LoraLoaderModelOnly",
+     "ModelSamplingAuraFlow",
+     "SaveImage",
+     "UNETLoader",
+     "VAEDecode",
+     "VAELoader"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/template-recraft_create_style.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:3ad50a379ad937c026a21ab37aad149fc18cb4533344400d50d47458628da656",
+    "node_count": 11,
+    "node_types": [
+     "LoadImage",
+     "PreviewAny",
+     "RecraftCreateStyleNode",
+     "RecraftStyleV3InfiniteStyleLibrary",
+     "RecraftTextToImageNode",
+     "SaveImage"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/sd3.5_simple_example.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:bd8c448ddc892097316df29241153094fb2ecacc1e7ccd1bb87f6fdb6b9c2d63",
+    "node_count": 7,
+    "node_types": [
+     "CLIPTextEncode",
+     "CheckpointLoaderSimple",
+     "EmptySD3LatentImage",
+     "KSampler",
+     "SaveImage",
+     "VAEDecode"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/flux_schnell.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:bd8c448ddc892097316df29241153094fb2ecacc1e7ccd1bb87f6fdb6b9c2d63",
+    "node_count": 7,
+    "node_types": [
+     "CLIPTextEncode",
+     "CheckpointLoaderSimple",
+     "EmptySD3LatentImage",
+     "KSampler",
+     "SaveImage",
+     "VAEDecode"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/04_hunyuan_3d_2.1_subgraphed.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:cb145dff242118d43b77a9e4ed2ee4821ffad17ffcbcd38c272265d5f8c44a6e",
+    "node_count": 10,
+    "node_types": [
+     "CLIPVisionEncode",
+     "EmptyLatentHunyuan3Dv2",
+     "Hunyuan3Dv2Conditioning",
+     "ImageOnlyCheckpointLoader",
+     "KSampler",
+     "LoadImage",
+     "ModelSamplingAuraFlow",
+     "SaveGLB",
+     "VAEDecodeHunyuan3D",
+     "VoxelToMesh"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/gsc_starter_1.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:5c75213b9463c1f31620eef3c5a6e915aeadf42042eb96156cb830240ca29084",
+    "node_count": 10,
+    "node_types": [
+     "CLIPLoader",
+     "CLIPTextEncode",
+     "ConditioningZeroOut",
+     "EmptySD3LatentImage",
+     "KSampler",
+     "ModelSamplingAuraFlow",
+     "SaveImage",
+     "UNETLoader",
+     "VAEDecode",
+     "VAELoader"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "comfy_corpus",
+   "file": "trinitylivy/comfy-templates :: work/comfy-templates/data/raw/workflow_jsons/01_get_started_text_to_image.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:5c75213b9463c1f31620eef3c5a6e915aeadf42042eb96156cb830240ca29084",
+    "node_count": 10,
+    "node_types": [
+     "CLIPLoader",
+     "CLIPTextEncode",
+     "ConditioningZeroOut",
+     "EmptySD3LatentImage",
+     "KSampler",
+     "ModelSamplingAuraFlow",
+     "SaveImage",
+     "UNETLoader",
+     "VAEDecode",
+     "VAELoader"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "rh_har_export",
+   "file": "beulahkemp/RH-workflow :: har/workflow.runninghub.export.har (entry 0, base64 body)",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:ca50babf51c66db9892ae9b776c79e3fe42faabf22437bbda81e9aabfdd15555",
+    "node_count": 35,
+    "node_types": [
+     "CFGGuider",
+     "CLIPLoader",
+     "CLIPTextEncode",
+     "ColorMatch",
+     "ConditioningZeroOut",
+     "EmptyFlux2LatentImage",
+     "EmptyLatentImage",
+     "Flux2Scheduler",
+     "GetImageSize",
+     "INTConstant",
+     "ImageScaleToTotalPixels",
+     "ImageSharpen",
+     "KSampler",
+     "KSamplerSelect",
+     "LayerUtility: PurgeVRAM V2",
+     "LoraLoader",
+     "PreviewImage",
+     "RandomNoise",
+     "ReferenceLatent",
+     "SamplerCustomAdvanced",
+     "SaveImage",
+     "TTResolutionSelector",
+     "UNETLoader",
+     "VAEDecodeTiled",
+     "VAEEncodeTiled",
+     "VAELoader",
+     "easy clearCacheAll"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "synthetic",
+   "file": "spec/fixtures/synthetic/subgraph_reference.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:3eb44d7432da9c946e9df9282aa67661fa98d3d10503850c766e101abf38fb13",
+    "node_count": 3,
+    "node_types": [
+     "CLIPTextEncode",
+     "CheckpointLoaderSimple",
+     "KSampler"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "synthetic",
+   "file": "spec/fixtures/synthetic/empty_bag.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": null,
+    "node_count": 0,
+    "node_types": [],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "synthetic",
+   "file": "spec/fixtures/synthetic/api_format.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:1e69820f24fe3ccba879ea57689384d881930ac8d43aad6cd6c878e28e936833",
+    "node_count": 3,
+    "node_types": [
+     "CheckpointLoaderSimple",
+     "KSampler"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "synthetic",
+   "file": "spec/fixtures/synthetic/drop_and_plumbing.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:9083ae5c34b21da07554fd9dd59c7f21cd972cdf35b19eb6876d2c751ed727df",
+    "node_count": 3,
+    "node_types": [
+     "SaveImage",
+     "VAEDecode"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  },
+  {
+   "source": "synthetic",
+   "file": "spec/fixtures/synthetic/double_reference.json",
+   "expected": {
+    "fp_spec": 1,
+    "fp_bag": "sha256:1f67b58e5968fc4dd1518c183bcb2e8b5812377042dc60aea18a482c4c8a23b0",
+    "node_count": 3,
+    "node_types": [
+     "ImageScale",
+     "LoadImage"
+    ],
+    "dangling_refs": 0,
+    "cycle_guards": 0
+   }
+  }
+ ]
+}

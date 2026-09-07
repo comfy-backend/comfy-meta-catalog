@@ -1,0 +1,25 @@
+{
+ "nodes": [
+  {
+   "id": 1,
+   "type": "Note"
+  },
+  {
+   "id": 2,
+   "type": "GetNode"
+  },
+  {
+   "id": 3,
+   "type": "VAEDecode"
+  },
+  {
+   "id": 4,
+   "type": "VAEDecode"
+  },
+  {
+   "id": 5,
+   "type": "SaveImage",
+   "mode": 4
+  }
+ ]
+}

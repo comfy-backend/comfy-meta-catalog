@@ -1,0 +1,29 @@
+{
+ "nodes": [
+  {
+   "id": 1,
+   "type": "CheckpointLoaderSimple"
+  },
+  {
+   "id": 2,
+   "type": "e3a57dc6-b2bf-4d05-927d-3715b40d2a77"
+  }
+ ],
+ "definitions": {
+  "subgraphs": [
+   {
+    "id": "e3a57dc6-b2bf-4d05-927d-3715b40d2a77",
+    "nodes": [
+     {
+      "id": 10,
+      "type": "CLIPTextEncode"
+     },
+     {
+      "id": 11,
+      "type": "KSampler"
+     }
+    ]
+   }
+  ]
+ }
+}

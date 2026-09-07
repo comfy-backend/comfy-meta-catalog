@@ -1,0 +1,104 @@
+# Meta-catalog join — the weekly cross-platform join (runner pattern).
+#
+# v0 STATE: the two vendor emitters do not exist yet, so the schedule is
+# COMMENTED OUT. At v1 (both emitters live) uncomment the schedule block —
+# Friday 09:00 UTC (RH daily artifact is same-day; comfy's Thursday
+# 09:00 PT sandbox-daemon artifact is ~16h old — DESIGN_meta_catalog §6).
+#
+# The join itself is ~1 min of pure Python on ~105k rows. Stdlib only.
+name: meta-join
+
+on:
+  workflow_dispatch: {} # manual trigger (validation / v0 self-test)
+  push:
+    branches: [main] # self-test gate, like the runner repo
+  # --- ENABLE AT v1 (both interchange emitters live) ---
+  # schedule:
+  #   - cron: "0 9 * * 5" # Friday 09:00 UTC
+  # --- artifact-age drift alert: hard-fail + issue if either artifact
+  #     is older than 8 days (checked inside the join step below)
+
+concurrency:
+  group: meta-join
+  cancel-in-progress: false # never kill a join mid-run
+
+permissions:
+  contents: write # commit data/meta back to main
+  issues: write # drift alerts
+
+jobs:
+  join:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out meta repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch vendor interchange artifacts
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: bash scripts/fetch_artifacts.sh
+
+      - name: Syntax + fixture parity + invariants (always runs)
+        run: |
+          python3 -m py_compile join/fingerprint.py join/build_meta_index.py join/verify.py
+          python3 join/verify.py
+
+      - name: Smoke-test the joiner (fixtures-based, no vendor data needed)
+        run: python3 scripts/smoke_join.py
+
+      - name: Run the join (v0: exits cleanly when no artifacts)
+        id: join
+        run: |
+          if [ -z "$(ls data/inbox/*.jsonl* 2>/dev/null)" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "v0 state: no interchange artifacts in inbox — join skipped"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            python3 join/build_meta_index.py
+            python3 join/verify.py
+            # artifact-age drift alert (> 8 days = hard fail)
+            python3 - <<'EOF'
+            import json, sys, datetime
+            now = datetime.datetime.now(datetime.timezone.utc)
+            for p, h in json.load(open("data/meta/stats.json"))["inputs"].items():
+                age = (now - datetime.datetime.fromisoformat(h["emitted_at"])).days
+                if age > 8:
+                    print(f"DRIFT: {p} artifact is {age} days old")
+                    sys.exit(1)
+            print("artifact ages OK")
+            EOF
+          fi
+
+      - name: Commit join output (scoped to data/meta only)
+        if: steps.join.outputs.skip == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/meta
+          if git diff --cached --quiet; then
+            echo "no join output changes"
+          else
+            git commit -m "meta-join: refresh data/meta (auto)"
+            git push origin HEAD:main
+          fi
+
+      - name: File drift issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GH_PAT }}
+          script: |
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "meta-join failed",
+              body: `Run: ${runUrl}\nSee the workflow log for the failing step (artifact missing/stale/invalid or join invariant failure).`,
+              labels: ["join-failure"],
+            });

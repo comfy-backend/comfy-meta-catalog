@@ -1,0 +1,28 @@
+{
+ "nodes": [
+  {
+   "id": 1,
+   "type": "MarkdownNote"
+  },
+  {
+   "id": 2,
+   "type": "Note"
+  },
+  {
+   "id": 3,
+   "type": "Reroute"
+  },
+  {
+   "id": 4,
+   "type": "PrimitiveNode"
+  },
+  {
+   "id": 5,
+   "type": "GetNode"
+  },
+  {
+   "id": 6,
+   "type": "SetNode"
+  }
+ ]
+}

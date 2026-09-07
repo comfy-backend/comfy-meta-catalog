@@ -1,0 +1,38 @@
+{
+ "nodes": [
+  {
+   "id": 1,
+   "type": "LoadImage"
+  },
+  {
+   "id": 2,
+   "type": "sub-a"
+  },
+  {
+   "id": 3,
+   "type": "sub-a"
+  }
+ ],
+ "definitions": {
+  "subgraphs": [
+   {
+    "id": "sub-a",
+    "nodes": [
+     {
+      "id": 9,
+      "type": "ImageScale"
+     }
+    ]
+   },
+   {
+    "id": "sub-unused",
+    "nodes": [
+     {
+      "id": 8,
+      "type": "NeverUsed"
+     }
+    ]
+   }
+  ]
+ }
+}

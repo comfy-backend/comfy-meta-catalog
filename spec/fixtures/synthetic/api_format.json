@@ -1,0 +1,14 @@
+{
+ "3": {
+  "class_type": "KSampler",
+  "inputs": {}
+ },
+ "4": {
+  "class_type": "CheckpointLoaderSimple",
+  "inputs": {}
+ },
+ "3-2": {
+  "class_type": "KSampler",
+  "inputs": {}
+ }
+}
