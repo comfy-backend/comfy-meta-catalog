@@ -52,7 +52,7 @@ jobs:
       - name: Smoke-test the joiner (fixtures-based, no vendor data needed)
         run: python3 scripts/smoke_join.py
 
-      - name: Run the join (v0: exits cleanly when no artifacts)
+      - name: "Run the join (v0 exits cleanly when no artifacts)"
         id: join
         run: |
           if [ -z "$(ls data/inbox/*.jsonl* 2>/dev/null)" ]; then
