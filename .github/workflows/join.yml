@@ -62,17 +62,7 @@ jobs:
             echo "skip=false" >> "$GITHUB_OUTPUT"
             python3 join/build_meta_index.py
             python3 join/verify.py
-            # artifact-age drift alert (> 8 days = hard fail)
-            python3 - <<'EOF'
-            import json, sys, datetime
-            now = datetime.datetime.now(datetime.timezone.utc)
-            for p, h in json.load(open("data/meta/stats.json"))["inputs"].items():
-                age = (now - datetime.datetime.fromisoformat(h["emitted_at"])).days
-                if age > 8:
-                    print(f"DRIFT: {p} artifact is {age} days old")
-                    sys.exit(1)
-            print("artifact ages OK")
-            EOF
+            python3 scripts/check_drift.py  # artifact-age drift alert (> 8 days = hard fail)
           fi
 
       - name: Commit join output (scoped to data/meta only)
