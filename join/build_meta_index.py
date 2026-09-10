@@ -12,7 +12,9 @@ data/meta/:
 
 Merge rules (v2 — the Jaccard tier was de-vacuated):
   auto-merge iff: same fp_bag AND |node_count diff| <= 2 AND cluster
-  size <= 4 AND distinct node types >= 8. Anything else -> status "review"
+  size <= 4 AND distinct node types >= 8 AND no single platform
+  contributes >= 3 members (same-platform re-publish guard, RH pre-study
+  2026-09-10). Anything else -> status "review"
   (never silently merged).
 
 Stdlib only. Deterministic: output sorted by entity_id.
@@ -30,6 +32,13 @@ FP_SPEC_SUPPORTED = 1
 MIN_DISTINCT_TYPES = 8
 MAX_NODE_COUNT_DIFF = 2
 MAX_CLUSTER_SIZE = 4
+# Same-platform multiplicity cap (RH 1k pre-study, session #10 —
+# spec/RH_PRESTUDY_FINDINGS.md): measured clusters of 3-5 RH workflows
+# sharing a bag are a RE-PUBLISH pattern, not a cross-platform identity
+# signal. >=3 members on ONE platform routes to review even when the
+# entropy guards pass. Cross-platform pairs (max 2 per platform) keep
+# the current rules.
+MAX_SAME_PLATFORM_CLUSTER = 3
 
 # PLATFORM_REGISTRY ordinals (id derivation order)
 ORDINALS = {"comfy_gallery": 1, "comfy_github": 2, "runninghub": 3, "rh_app": 4}
@@ -151,10 +160,14 @@ def build(inbox: Path = INBOX, meta_dir: Path = META) -> dict:
         for m in members:
             distinct_types.update(m.get("node_types") or [])
         counts = [m.get("node_count") or 0 for m in members]
+        platform_counts: dict[str, int] = defaultdict(int)
+        for m in members:
+            platform_counts[m.get("platform") or "?"] += 1
         guards_ok = (
             len(members) <= MAX_CLUSTER_SIZE
             and (max(counts) - min(counts)) <= MAX_NODE_COUNT_DIFF
             and len(distinct_types) >= MIN_DISTINCT_TYPES
+            and max(platform_counts.values()) < MAX_SAME_PLATFORM_CLUSTER
         )
         if not guards_ok:
             review_queue.append({"fp_bag": fp, "members": [m["ids"] for m in members]})
@@ -253,7 +266,7 @@ def build(inbox: Path = INBOX, meta_dir: Path = META) -> dict:
                 ({"fp_bag": fp, "size": len(ms)} for fp, ms in by_bag.items() if len(ms) > 1),
                 key=lambda g: -g["size"],
             )[:10],
-            "note": "review queue = clusters failing guards (cluster>4 | node_count diff>2 | distinct<8); never auto-merged",
+            "note": "review queue = clusters failing guards (cluster>4 | node_count diff>2 | distinct<8 | same-platform>=3); never auto-merged",
         },
     }
     (meta_dir / "stats.json").write_text(json.dumps(stats, indent=1) + "\n", encoding="utf-8")

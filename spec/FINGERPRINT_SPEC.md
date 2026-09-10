@@ -1,5 +1,11 @@
 # FINGERPRINT_SPEC v1
 
+> **STATUS: FROZEN (2026-09-10).** Freeze gate passed: the RH 1k-sample
+> pre-study (`spec/RH_PRESTUDY_FINDINGS.md` — 8.7% duplicate rate, guard
+> envelope validated) plus the comfy corpus measurement (20%, session #9).
+> v1 may only change via a new FP_SPEC version (bump, regenerate fixtures,
+> both vendors re-emit, the join refuses `fp_spec ≠ supported`).
+
 > THE LAW for content fingerprints. One implementation exists:
 > `join/fingerprint.py` (vendored verbatim into both parent pipelines).
 > A change here = bump `FP_SPEC`, regenerate `spec/fixtures/`, both sides

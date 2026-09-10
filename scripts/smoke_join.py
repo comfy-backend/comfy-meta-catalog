@@ -5,7 +5,8 @@ run build + verify, assert expected outcomes, then clean up.
 
 Proves at v0: header validation, fp-bag clustering, merge guards, review
 queue, cross-platform merge (comfy <-> RH same fp_bag), entity-id
-derivation, registry append, bijection invariants.
+derivation, registry append, bijection invariants, and the same-platform
+re-publish guard (>=3 members on one platform -> review).
 """
 import gzip
 import json
@@ -49,6 +50,9 @@ def main():
     hunyuan = BY_FILE["04_hunyuan_3d_2.1_subgraphed.json"]
     rh_export = BY_FILE["workflow.runninghub.export.har (entry 0, base64 body)"]
     empty = BY_FILE["empty_bag.json"]
+    # High-entropy fixture (37 types, 48 nodes) for the same-platform guard
+    # test: a 3-member comfy_github cluster that passes every OTHER guard.
+    qwen37 = BY_FILE["558cc012978d.json"]
 
     comfy_rows = [
         row("comfy_github", {"comfy_github": "sd3.5_simple_example"}, "SD3.5 Simple", sd35,
@@ -65,6 +69,16 @@ def main():
         row("comfy_github", {"comfy_github": "04_hunyuan_3d_2.1_subgraphed"}, "Hunyuan 3D subgraphed", hunyuan,
             {"log_score": 6.1}),
         row("comfy_gallery", {"comfy_gallery": "note-only"}, "Note Only (no fp)", empty, {}),
+        # SAME-PLATFORM RE-PUBLISH TRIPLE (pre-study guard): 3 comfy_github
+        # rows, identical high-entropy fp, identical node_count — passes
+        # cluster-size (3<=4), node-diff (0), entropy (37>=8) — ONLY the
+        # same-platform>=3 rule sends it to review.
+        row("comfy_github", {"comfy_github": "qwen-37-a"}, "Qwen37 republish A", qwen37,
+            {"log_score": 3.0}),
+        row("comfy_github", {"comfy_github": "qwen-37-b"}, "Qwen37 republish B", qwen37,
+            {"log_score": 3.1}),
+        row("comfy_github", {"comfy_github": "qwen-37-c"}, "Qwen37 republish C", qwen37,
+            {"log_score": 3.2}),
     ]
     rh_rows = [
         # CROSS-PLATFORM merge: same fp_bag as sd3.5/flux cluster
@@ -117,6 +131,16 @@ def main():
     assert starter_in_review, "starter pair with node_count diff 5 should land in review queue"
     note_only = [m for m in meta if m["fingerprint"]["fp_bag"] is None]
     assert len(note_only) == 1, "empty-bag row becomes its own entity"
+
+    # SAME-PLATFORM GUARD (pre-study amendment): the qwen-37 triple passes
+    # every other guard but must NOT auto-merge — 3 members on one platform
+    # is the measured re-publish pattern.
+    assert qwen37["fp_bag"] in review_fps, "same-platform >=3 cluster must land in review queue"
+    qwen_cluster = by_fp[qwen37["fp_bag"]]
+    assert qwen_cluster["status"] != "merged", "same-platform re-publish triple must not auto-merge"
+    # And a 2-member split (e.g. the existing starter pair shape) would
+    # still be merge-eligible under the other guards — covered by the
+    # cross-platform hunyuan assertion above (1 comfy + 1 RH).
 
     v = subprocess.run([sys.executable, str(ROOT / "join" / "verify.py")], capture_output=True, text=True)
     print("VERIFY:", v.stdout.strip())
